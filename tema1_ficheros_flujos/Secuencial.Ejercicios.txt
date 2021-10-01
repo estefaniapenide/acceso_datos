@@ -1,0 +1,96 @@
+//Ejercicios Directorios
+//Crear directorio y ficheros dentro del actual del proyecto.
+ 
+//Ejercicios Ficheros Secuenciales
+//TEXTO
+//ej1.
+    /*
+    1) Crea un fichero de texto con el nombre y contenido que tu quieras. 
+    Ahora crea una aplicación que lea este fichero de texto carácter a carácter 
+    y muestre su contenido por pantalla  sin espacios. 
+    
+    Por ejemplo, si un fichero tiene el siguiente texto “Esto es una prueba”, 
+    deberá mostrar “Estoesunaprueba”.
+
+    Captura las excepciones que veas necesario.
+    */
+    
+//Lectura FicheroTexto con caracteres ASCII
+
+//ej2
+/*
+  2)  Crea una aplicación que pida la ruta de dos ficheros de texto y de una ruta de destino (solo la ruta, sin fichero al final). Debes copiar el contenido de los dos ficheros en uno, este tendrá el nombre de los dos ficheros separados por un guion bajo, este se guardara en la ruta donde le hayamos indicado por teclado.
+
+    Para unir los ficheros en uno, crea un método donde le pases como parámetro todas las rutas. En este método, aparte de copiar debe comprobar que si existe el fichero de destino, nos muestre un mensaje informándonos de si queremos sobrescribir el fichero. Te recomiendo usar la clase File y JOptionPane.
+
+    Por ejemplo, si tengo un fichero A.txt con “ABC” como contenido, un fichero B.txt con “DEF” y una ruta de destino D:\, el resultado sera un fichero llamado A_B.txt en la ruta D:\ o la actual con el contenido “ABCDEF”.
+    */
+
+//BINARIOS
+
+ /*BYTES
+    3)Crea una aplicación que copie un fichero binario a otra localización. 
+    En lugar de leer y escribir byte a byte, crea un array de bytes con el 
+    tamaño del fichero de origen (utiliza el método available()), 
+    copia el contenido del fichero a este array y escribe a partir de este array.
+
+    Recuerda que debes controlar las excepciones que puedan aparecer. 
+    En caso de error, mostrar una ventana de dialogo con información del error.
+    */
+
+   /*DATOS
+    4)Crea una aplicación que almacene los datos básicos de un vehículo como 
+    la matricula(String), marca (String), tamaño de deposito (double) y modelo (String) 
+    en ese orden y de uno en uno usando la clase DataInputStream.
+
+    Los datos anteriores datos se pedirán por teclado y se irán añadiendo al 
+    fichero (no se sobrescriben los datos) cada vez que ejecutemos la aplicación.
+
+    El fichero siempre sera el mismo, en todos los casos.
+
+    Muestra todos los datos de cada coche en un cuadro de dialogo, es decir, 
+    si tenemos 3 vehículos mostrara 3 cuadros de dialogo con sus respectivos datos. 
+    
+    Un ejemplo de salida de información puede ser este:
+    
+    El vehiculo tiene una matrícula 6691PJ, su marca es Opel, el tamaño depósito 
+    es de 45.0 litros y su modelo es Astra.
+    */
+
+//SERIALIZACION
+ /*5)
+    Mismo ejercicio que Fich. Binarios - flujo Datos pero con serialización, 
+    para ello, crea una simple clase Vehiculo
+    con los atributos matricula, marca, tamaño del deposito y modelo, 
+    con sus respectivos métodos get y el constructor se invocara con todos los atributos.
+
+    El atributo tamañoDeposito no se incluirá en el fichero (aun así debemos pedirlo), 
+    debemos indicarlo en la clase (recuerda el uso de transient).
+
+    Recuerda que al usar la clase ObjectOutputStream, si vamos a añadir varios objetos 
+    en distintas ejecuciones, debemos crear nuestra propia versión de ObjectOutputStream. 
+    */
+
+/*6)
+    La serialización de objetos consiste en transformar los atributos de un objeto
+    a datos para un fichero binario, esto nos hace ahorrar tiempo a la hora de programar.
+
+    Las clases para realizar una serializacion de objetos son
+        ObjectInputStream para leer 
+        y ObjectOutputStream para escribir.
+
+    Para crear estos objetos deben pasarle como parámetro 
+        un FileInputStream para ObjectInputStream 
+        y FileOutputStream para ObjectOutputStream.
+
+    También debemos hacer que la clase que cree el objeto sea serializable, 
+    para ello implementaremos una interfaz llamada Serializable, 
+    debemos importarla desde el paquete java.io.
+
+    Usaremos en este ejemplo la clase Empleado. Implementando la interfaz 
+    que hemos comentado anteriormente.
+    
+    Ahora escribiremos en un fichero binario, los datos de un objeto de 
+    la clase Empleado con ObjectOutputStream, 
+    usaremos el método writeObject(objeto_serializable).
+    */

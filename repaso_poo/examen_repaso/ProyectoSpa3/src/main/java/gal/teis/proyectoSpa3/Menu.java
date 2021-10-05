@@ -397,7 +397,7 @@ public class Menu {
 
     public static void recogidaFechaHora(Spa spa, int i, int tipoActividad) {
         Scanner input = new Scanner(System.in);
-
+do{
         System.out.println("FECHA ");
         System.out.println("Día:");
         int day = ControlData.leerDia(input);
@@ -406,6 +406,8 @@ public class Menu {
         System.out.println("Año:");
         int year = ControlData.leerInt(input);
         year = year - 1900;
+
+        if(controlFecha(dia,mes,year)){
         Date fecha = new Date(year, month, day);
         System.out.println("Hora inicio: ");
         int horaI = ControlData.leerInt(input);
@@ -419,6 +421,39 @@ public class Menu {
         for (int e = 0; e < spa.getSocios().get(i).getUsos().size(); e++) {
             System.out.println(spa.getSocios().get(i).getUsos().get(e));
         }
+}else{
+System.out.println("No ha introducid un valor de fecha válido.");
+}
+}while(!controlFecha(dia,mes,year))
 
     }
+
+public static boolean controlFecha(int dia, int mes, int year){
+boolean fecha=false;
+if(mes>12 or mes<1){
+    fecha=false;
+}
+else if(mes==1 or mes==3 or mes==5 or mes==7 or mes==8 or mes==10 or mes==12){
+    if(dia>31 or dia<1){
+        fecha=false;
+}else{
+        fecha=true;
+}
+}else if(mes==4 or mes==6 or mes==9 or mes==11){
+    if(dia>30 or dia<1){
+        fecha=false;
+}else{
+        fecha=true;
+}
+}else if(mes==2){
+    if(! year % 4 && (year % 100 || ! year % 400) && (dia<=29 && dia>0)){
+        fecha=true;
+}else if(dia<=28 and dia>0){
+        fecha=true;
+}else{
+        fecha=false;
+}
+}
+return fecha;
+}
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListaLibrosBiblioteca>
+<DatosLibro>
+<titulo>El Quijote</titulo>
+<autor>Cerventes</autor>
+<precio>32</precio>
+</DatosLibro>
+<DatosLibro>
+<titulo>Patria</titulo>
+<autor>Fernando Aranjuren</autor>
+<precio>27</precio>
+</DatosLibro>
+<DatosLibro>
+<titulo>Los documentos electronicos</titulo>
+<autor>Jorde Serra Serra</autor>
+<precio>15</precio>
+</DatosLibro>
+</ListaLibrosBiblioteca>

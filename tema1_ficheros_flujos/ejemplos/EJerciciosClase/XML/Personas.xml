@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Personas>
+<persona>
+<clave>3</clave>
+<nombre>Beatriz</nombre>
+<edad>25</edad>
+</persona>
+<persona>
+<clave>5</clave>
+<nombre>Isabel</nombre>
+<edad>30</edad>
+</persona>
+<persona>
+<clave>7</clave>
+<nombre>Iciar</nombre>
+<edad>16</edad>
+</persona>
+</Personas>

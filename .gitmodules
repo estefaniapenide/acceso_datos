@@ -1,3 +1,6 @@
 [submodule "tema1_ficheros_flujos/AD-Ejercicios_ficheros"]
 	path = tema1_ficheros_flujos/AD-Ejercicios_ficheros
 	url = https://github.com/estefaniapenide/AD-Ejercicios_ficheros
+[submodule "tema1_ficheros_flujos/AD-Ejercicios_XML"]
+	path = tema1_ficheros_flujos/AD-Ejercicios_XML
+	url = https://github.com/estefaniapenide/AD-Ejercicios_XML.git

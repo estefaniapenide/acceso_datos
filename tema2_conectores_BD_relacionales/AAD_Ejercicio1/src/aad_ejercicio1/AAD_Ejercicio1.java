@@ -21,8 +21,12 @@ public class AAD_Ejercicio1 {
         int cont = 0, op = 0;
         
         //Declaracion de driver y url
-        String driver= "com.mysql.jdbc.Driver"; 
-        String url= "jdbc:mysql://localhost:3307/Alumnos?user=root&password=usbw";
+        //String driver= "com.mysql.jdbc.Driver"; 
+        //String url= "jdbc:mysql://localhost:3307/Alumnos?user=root&password=usbw";
+        
+        //Para my server de mysql en casa
+        String driver="com.mysql.cj.jdbc.Driver";
+        String url= "jdbc:mysql://localhost:3306/Alumnos?user=root&password=1234";
 
         /*No es necesario desde la ultima versión
         try {

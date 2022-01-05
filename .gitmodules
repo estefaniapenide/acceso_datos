@@ -5,3 +5,6 @@
 	path = tema1_ficheros_flujos/AD-Ejercicios_XML
 	url = https://github.com/estefaniapenide/AD-Ejercicios_XML.git
 
+[submodule "tema2_conectores_BD_relacionales/AD-Instituto"]
+	path = tema2_conectores_BD_relacionales/AD-Instituto
+	url = https://github.com/estefaniapenide/AD-Instituto.git

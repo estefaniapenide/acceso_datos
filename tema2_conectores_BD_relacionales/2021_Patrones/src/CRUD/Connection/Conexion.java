@@ -6,10 +6,12 @@ import java.sql.SQLException;
  
 public class Conexion {
 	public static Connection conectar() {
+            
+                
 		Connection con = null;
 		
 		String password = "root";
-		String usuario = "root";
+		String usuario = "1234";
 		String url = "jdbc:mysql://localhost:3306/ventas?useSSL=false&serverTimezone=UTC&user=" + usuario
 				+ "&password=" + password;
 		try {

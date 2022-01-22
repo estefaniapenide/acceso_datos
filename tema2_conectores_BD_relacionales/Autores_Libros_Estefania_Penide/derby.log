@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Jan 19 17:58:12 CET 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-017e-7346-478e-00000f400000 
+on database directory C:\Users\a20estefaniapc\Documents\NetBeansProjects\Autores_Libros_Estefania_Penide\BD\ApacheDerby\librosApache with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5acf9800 
+Loaded from file:/C:/Users/a20estefaniapc/Documents/NetBeansProjects/Autores_Libros_Estefania_Penide/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=16.0.1+9-24
+user.dir=C:\Users\a20estefaniapc\Documents\NetBeansProjects\Autores_Libros_Estefania_Penide
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

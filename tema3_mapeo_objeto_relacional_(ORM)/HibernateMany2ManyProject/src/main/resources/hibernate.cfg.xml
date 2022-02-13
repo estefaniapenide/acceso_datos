@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!--
+      If you are using maven to build the project, 
+        put hibernate.cfg.xml in the src/main/resources directory so that when you build the war package, it will be automatically be placed in /WEB-INF/classes.
+
+      If not using maven, 
+        place the file directly in your WEB-INF/classes directory.
+      --> 
+     
+    <!--
+    1, Conexión a la base de datos de configuración4Parámetros
+    hibernate.connection.driver_class, el controlador de la base de datos
+         hibernate_project_01 en la url es el nombre de la base de datos
+         El nombre de usuario y la contraseña son las cuentas para acceder a la base de datos.
+-->
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/many2many</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">usbw</property>
+    
+    <!--
+    <property name="hibernate.c3p0.min_size">10</property>
+    <property name="hibernate.c3p0.max_size">20</property>
+    <property name="hibernate.c3p0.acquire_increment">1</property>
+    <property name="hibernate.c3p0.idle_test_period">3000</property>
+    <property name="hibernate.c3p0.max_statements">50</property>
+    <property name="hibernate.c3p0.timeout">1800</property>
+    <property name="hibernate.c3p0.validate">1800</property>
+    -->
+    <!--Configuración con c3p0 de las conexiones JDBC
+        Debe estar en el fichero pom la dependencia
+    línea hibernate.c3p0.timeout - para que finalice la sesion al
+    terminar la ejecución del programa.
+    -->
+    
+    <!--2, Pantalla de configuración sql -->
+    <property name="show_sql">true</property>
+    <!-- 3, Ya sea para formatear la declaración SQL -->
+    <property name="format_sql">true</property>
+    <!-- 4, Ya sea para confirmar automáticamente la transacción 
+    Se evita así usar el session.getTransaction().open() y commit()
+    <property name="hibernate.connection.autocommit">true</property>-->
+    
+    <!-- 5, Abra la función de sesión de enlace de hilo actual -->
+    <property name="hibernate.current_session_context_class">thread</property>
+    
+    <!--
+    6、hibernate.dialect:Dialecto de la base de datos
+ 	mysql:Límite de paginación
+ 	oracle:Rownum de paginación
+-->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.show_sql">true</property>
+    
+    <!-- Creación tablas de la BD-->
+    <!--<property name="hbm2ddl.auto">create-drop</property>-->
+    
+    <property name="hbm2ddl.auto">update</property>
+    
+    <!-- 7a, Configure el archivo de mapeo entre JavaBean y la tabla -->
+<!--  Tenga en cuenta que los nombres de los paquetes separados por barras no por puntos -->
+    
+    <!--many2many xml-->
+    <!--
+    <mapping resource="gal/mrnovoa/hibernate/mapeos/Group.hbm.xml"/>
+    <mapping resource="gal/mrnovoa/hibernate/mapeos/User.hbm.xml"/>
+     -->
+    <!--many2many entitites-->
+    <!--
+    <mapping class="gal.mrnovoa.hibernate.entities.User"/>
+    <mapping class="gal.mrnovoa.hibernate.entities.Group"/>
+    -->
+    
+    <!--many2many sol1 y sol 2-->
+    <mapping class="gal.mrnovoa.hibernate.sol1.User"/>
+    <mapping class="gal.mrnovoa.hibernate.sol1.Group"/>
+    <mapping class="gal.mrnovoa.hibernate.sol1.UserGroup"/>
+    
+    <mapping class="gal.mrnovoa.hibernate.sol2.User_sol2"/>
+    <mapping class="gal.mrnovoa.hibernate.sol2.Group_sol2"/>
+    <mapping class="gal.mrnovoa.hibernate.sol2.UserGroup_sol2"/>
+    
+    
+    <!--HQL-->
+    <mapping class="gal.mrnovoa.hibernate.hql.Category"/>
+    <mapping class="gal.mrnovoa.hibernate.hql.OldCategory"/>
+    <mapping class="gal.mrnovoa.hibernate.hql.Product"/>
+    <mapping class="gal.mrnovoa.hibernate.hql.Order"/>
+ <!-- 7b,Usando JPA- Configure el archivo de mapeo entre JavaBean y la tabla 
+    Tenga en cuenta que los nombres de los paquetes separados por puntos
+    <mapping class="mapeos.empleado" />
+    -->
+ 
+  </session-factory>
+</hibernate-configuration>

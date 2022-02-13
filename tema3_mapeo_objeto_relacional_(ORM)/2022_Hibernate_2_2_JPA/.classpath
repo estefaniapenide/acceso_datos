@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/byte-buddy-1.11.20.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/classmate-1.5.1.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/FastInfoset-1.2.15.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/hibernate-commons-annotations-5.1.2.Final.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/hibernate-core-5.6.0.Final.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/istack-commons-runtime-3.0.7.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/jandex-2.2.3.Final.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/javax.activation-api-1.2.0.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/jaxb-runtime-2.3.1.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/jboss-logging-3.4.2.Final.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/stax-ex-1.8.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6/txw2-2.3.1.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/Hibernate5_6_jpa/hibernate-jpamodelgen-5.6.0.Final.jar"/>
+	<classpathentry kind="lib" path="F:/asignaturas_segundo/acceso_a_datos/tema3_mapeo_objeto_relacional_(ORM)/2022_Hibernate_2_1_XML/lib/MySQL/mysql-connector-java-8.0.15.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

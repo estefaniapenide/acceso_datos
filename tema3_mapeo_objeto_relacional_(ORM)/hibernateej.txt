@@ -1,0 +1,329 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.9
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tiempo de generación: 24-01-2022 a las 11:30:41
+-- Versión del servidor: 5.5.20
+-- Versión de PHP: 5.3.9
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+01:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: `hibernateej`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cicloformativo`
+--
+
+CREATE TABLE IF NOT EXISTS `cicloformativo` (
+  `idCiclo` int(11) NOT NULL DEFAULT '0',
+  `nombreCiclo` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `horas` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idCiclo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cicloformativo`
+--
+
+INSERT INTO `cicloformativo` (`idCiclo`, `nombreCiclo`, `horas`) VALUES
+(1, 'DAM', 1890),
+(2, 'DAW', 1900);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `correoelectronico`
+--
+
+CREATE TABLE IF NOT EXISTS `correoelectronico` (
+  `idCorreo` int(11) NOT NULL DEFAULT '0',
+  `direccionCorreo` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `IdProfesor` int(11) DEFAULT NULL,
+  `Idx` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idCorreo`),
+  KEY `correoelectronico_FK` (`IdProfesor`),
+  KEY `Idx` (`idCorreo`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `correoelectronico`
+--
+
+INSERT INTO `correoelectronico` (`idCorreo`, `direccionCorreo`, `IdProfesor`, `Idx`) VALUES
+(1, 'laura@gmail.com', 10, 2),
+(2, 'laura@hotmail.com', 10, 1),
+(3, 'laura@yahoo.com', 10, 0),
+(4, 'raquel@gmail.com', 8, NULL),
+(5, 'raquel@hotmail.com', 8, NULL),
+(6, 'raquel@yahoo.com', 8, NULL),
+(7, 'nombre101@gmail.com', 101, NULL),
+(8, 'nombre101@outlook.com', 101, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `direccion`
+--
+
+CREATE TABLE IF NOT EXISTS `direccion` (
+  `Id` int(11) NOT NULL,
+  `calle` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `poblacion` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `provincia` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `Idmunicipio` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `direccion_FK` (`Idmunicipio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `direccion`
+--
+
+INSERT INTO `direccion` (`Id`, `calle`, `numero`, `poblacion`, `provincia`, `Idmunicipio`) VALUES
+(1, 'Plaza del ayuntamiento', 8, 'Vigo', 'Pontevedra', NULL),
+(2, 'Avd Del Cid', 4, 'Vigo', 'Pontevedra', NULL),
+(3, 'Calle de la sarten', 23, 'Nigran', 'Pontevedra', NULL),
+(4, 'Calle Luis lamarca', 45, 'Xinzo Limia', 'Ourense', NULL),
+(5, 'Calle Bonilla', 78, 'Celanova', 'Ourense', NULL),
+(6, 'Calle Jesus López', 54, 'Verin', 'Ourense', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `modulo`
+--
+
+CREATE TABLE IF NOT EXISTS `modulo` (
+  `IdModulo` int(11) NOT NULL,
+  `nombre` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`IdModulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `modulo`
+--
+
+INSERT INTO `modulo` (`IdModulo`, `nombre`) VALUES
+(1, 'Sistemas Operativos en Red'),
+(2, 'Entornos de desarrollo'),
+(3, 'Sistemas Informáticos'),
+(4, 'Sistemas gestores de bases de datos'),
+(5, 'Programación'),
+(6, 'Lenguaje de marcas');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `municipios`
+--
+
+CREATE TABLE IF NOT EXISTS `municipios` (
+  `idMunicipio` int(11) NOT NULL DEFAULT '0',
+  `codProvincia` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `codMunicipio` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `nombreMunicipio` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idMunicipio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `municipios`
+--
+
+INSERT INTO `municipios` (`idMunicipio`, `codProvincia`, `codMunicipio`, `nombreMunicipio`) VALUES
+(1, '01', '010', 'Vigo'),
+(2, '01', '011', 'Nigran');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `profesor`
+--
+
+CREATE TABLE IF NOT EXISTS `profesor` (
+  `Id` int(11) NOT NULL,
+  `nombre` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `ape1` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `ape2` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `tipoFuncionario` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `profesor`
+--
+
+INSERT INTO `profesor` (`Id`, `nombre`, `ape1`, `ape2`, `tipoFuncionario`) VALUES
+(1, 'Juan', 'Perez', 'García', NULL),
+(2, 'Carlos', 'González', 'Oltra', NULL),
+(3, 'Sergio', 'Mateo', 'Ramis', NULL),
+(4, 'Paco', 'Moreno', 'Díaz', NULL),
+(5, 'Ana', 'Morales', 'Ortega', NULL),
+(6, 'Marcos', 'Tortosa', 'Martínez', NULL),
+(7, 'Sara', 'Barrrera', 'Salas', NULL),
+(8, 'Raquel', 'Peqrez', 'Izquierdo', NULL),
+(9, 'Rosa', 'Díaz', 'Del Toro', NULL),
+(10, 'Laura', 'Vivó', 'López', NULL),
+(101, 'Emilio', 'Perez', 'García', NULL),
+(102, 'Alfredo', 'González', 'Oltra', NULL),
+(103, 'Eduardo', 'Grau', 'Aroca', NULL),
+(104, 'Pau', 'Ayala', 'Fuentes', NULL),
+(410, 'Gabriel', 'Sáez', 'Izquierdo', NULL),
+(411, 'Javier', 'Ramírez', 'Olmo', NULL),
+(412, 'Elias', 'Rubio', 'Sánchez', '0'),
+(413, 'Juan Manuel', 'Campos', 'Alierta', '1'),
+(414, 'Anabel', 'Marco', 'Izquierdo', '2'),
+(415, 'Ricardo', 'Acosta', 'Soler', '0'),
+(416, 'Laura', 'Vallés', 'Muñoz', '1'),
+(417, 'Elisa', 'Amador', 'Serra', '2');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `profesornew`
+--
+
+CREATE TABLE IF NOT EXISTS `profesornew` (
+  `Id` int(11) NOT NULL,
+  `nombre` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `ape1` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `ape2` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `profesornew`
+--
+
+INSERT INTO `profesornew` (`Id`, `nombre`, `ape1`, `ape2`) VALUES
+(11, 'Isabel', 'Fuertes', 'Gascón'),
+(12, 'Jose', 'Valenciano', 'Gimeno'),
+(13, 'Ana Isabel', 'Perez', 'León'),
+(14, 'Francisco', 'Moya', 'Salas');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `profesornewmodulo`
+--
+
+CREATE TABLE IF NOT EXISTS `profesornewmodulo` (
+  `idProfesor` int(11) NOT NULL,
+  `IdModulo` int(11) NOT NULL,
+  PRIMARY KEY (`IdModulo`,`idProfesor`),
+  KEY `FK935EBD2097F149CE` (`idProfesor`),
+  KEY `FK935EBD20F659E166` (`IdModulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `profesornewmodulo`
+--
+
+INSERT INTO `profesornewmodulo` (`idProfesor`, `IdModulo`) VALUES
+(11, 1),
+(11, 2),
+(12, 3),
+(13, 4),
+(13, 5),
+(14, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tiposbasicos`
+--
+
+CREATE TABLE IF NOT EXISTS `tiposbasicos` (
+  `inte` int(11) NOT NULL,
+  `long1` bigint(20) DEFAULT NULL,
+  `short1` smallint(6) DEFAULT NULL,
+  `float1` float DEFAULT NULL,
+  `double1` double DEFAULT NULL,
+  `character1` char(1) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `byte1` tinyint(4) DEFAULT NULL,
+  `boolean1` tinyint(1) DEFAULT NULL,
+  `yesno1` char(1) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `truefalse1` char(1) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `stri` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `dateDate` date DEFAULT NULL,
+  `dateTime` time DEFAULT NULL,
+  `dateTimestamp` datetime DEFAULT NULL,
+  `texto` longtext COLLATE latin1_spanish_ci,
+  `binario` tinyblob,
+  `bigDecimal` decimal(19,2) DEFAULT NULL,
+  `bigInteger` decimal(19,2) DEFAULT NULL,
+  PRIMARY KEY (`inte`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tiposbasicos`
+--
+
+INSERT INTO `tiposbasicos` (`inte`, `long1`, `short1`, `float1`, `double1`, `character1`, `byte1`, `boolean1`, `yesno1`, `truefalse1`, `stri`, `dateDate`, `dateTime`, `dateTimestamp`, `texto`, `binario`, `bigDecimal`, `bigInteger`) VALUES
+(1, 12, 13, 14.1, 15.2, 'W', 16, 1, 'Y', 'T', 'Hola mundo', '2022-01-23', '18:36:07', '2022-01-23 18:36:07', 'texto muyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy largo', 0x45f53a67ff, 0.30, 5345345324532.00),
+(2, 12, 13, 14.1, 15.2, 'W', 16, 0, 'N', 'F', 'Hola mundo', '2022-01-23', '18:36:07', '2022-01-23 18:36:07', 'texto muyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy largo', 0x45f53a67ff, 0.30, 5345345324532.00),
+(3, 12, 13, 14.1, 15.2, 'W', 16, 1, 'Y', 'T', 'Hola mundo', '2022-01-23', '18:40:06', '2022-01-23 18:40:06', 'texto muyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy largo', 0x45f53a67ff, 0.30, 5345345324532.00),
+(4, 12, 13, 14.1, 15.2, 'W', 16, 0, 'N', 'F', 'Hola mundo', '2022-01-23', '18:40:06', '2022-01-23 18:40:06', 'texto muyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy largo', 0x45f53a67ff, 0.30, 5345345324532.00);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `IdUsuario` int(11) DEFAULT NULL,
+  `login` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `nombre` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `ape1` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `ape2` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `password` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `fechaCreacion` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`IdUsuario`, `login`, `nombre`, `ape1`, `ape2`, `password`, `fechaCreacion`) VALUES
+(100, 'mrnovoa', 'Maria', 'Rodriguez', 'Novoa', '1234ñ@''"', '2022-01-22 19:34:12'),
+(10000, 'rgutierrez', 'Ramón', 'Gutiérrez', 'Olmo', '12345678', NULL);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `correoelectronico`
+--
+ALTER TABLE `correoelectronico`
+  ADD CONSTRAINT `correoelectronico_FK` FOREIGN KEY (`IdProfesor`) REFERENCES `profesor` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `direccion`
+--
+ALTER TABLE `direccion`
+  ADD CONSTRAINT `direccion_FK` FOREIGN KEY (`Idmunicipio`) REFERENCES `municipios` (`idMunicipio`);
+
+--
+-- Filtros para la tabla `profesornewmodulo`
+--
+ALTER TABLE `profesornewmodulo`
+  ADD CONSTRAINT `FK935EBD2097F149CE` FOREIGN KEY (`idProfesor`) REFERENCES `profesornew` (`Id`),
+  ADD CONSTRAINT `FK935EBD20F659E166` FOREIGN KEY (`IdModulo`) REFERENCES `modulo` (`IdModulo`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,206 @@
+El documento departamentos.xml 
+<departamentos>
+   <TITULO>DATOS DE LA TABLA DEPART</TITULO>
+   <DEP_ROW>
+       <DEPT_NO>10</DEPT_NO>
+       <DNOMBRE>CONTABILIDAD</DNOMBRE>
+       <LOC>SEVILLA</LOC>
+   </DEP_ROW>
+   <DEP_ROW>
+       <DEPT_NO>20</DEPT_NO>
+       <DNOMBRE>INVESTIGACION</DNOMBRE>
+       <LOC>MADRID</LOC>
+   </DEP_ROW>
+   <DEP_ROW>
+       <DEPT_NO>30</DEPT_NO>
+       <DNOMBRE>VENTAS</DNOMBRE>
+       <LOC>BARCELONA</LOC>
+   </DEP_ROW>
+   <DEP_ROW>
+      <DEPT_NO>40</DEPT_NO>
+      <DNOMBRE>PRODUCCION</DNOMBRE>
+      <LOC>BILBAO</LOC>
+   </DEP_ROW>
+</departamentos>
+Podemos representarlo en JSON así:
+{"departamentos":
+ {"TITULO":"DATOS DE LA TABLA DEPART",
+ "DEP_ROW":{"DEPT_NO":10,"DNOMBRE":"CONTABILIDAD","LOC":"SEVILLA"},
+ "DEP_ROW":{"DEPT_NO":20,"DNOMBRE":"INVESTIGACIÓN","LOC":"MADRID"},
+ "DEP_ROW":{"DEPT_NO":30,"DNOMBRE":"VENTAS","LOC":"BARCELONA"},
+ "DEP_ROW":{"DEPT_NO":40,"DNOMBRE":"PRODUCCION","LOC":"BILBAO"}
+ }
+}
+O también, como DEP_ROW se repite, podemos representarlo como un array:
+ {"departamentos":
+   {"TITULO":"DATOS DE LA TABLA DEPART",
+    "DEP_ROW": 
+    [
+     {"DEPT_NO":10, "DNOMBRE":"CONTABILIDAD", "LOC":"SEVILLA"},
+     {"DEPT_NO":20, "DNOMBRE":"INVESTIGACIÓN", "LOC":"MADRID"},
+     {"DEPT_NO":30, "DNOMBRE":"VENTAS", "LOC":"BARCELONA"},
+     {"DEPT_NO":40, "DNOMBRE":"PRODUCCION", "LOC":"BILBAO"}
+    ]
+   }
+ }
+En el siguiente documento (sucursales.xml) podemos representar sucursal y cuenta como arrays, ya que tenemos varias sucursales, y las sucursales tienen varias cuentas. Los atributos se representan como los demás elementos (pares nombre/valor).
+<sucursales>
+   <sucursal telefono="112233" codigo="SUC1">
+          <director>Alicia Gómez</director>
+	    <poblacion>Madrid</poblacion>
+	    <cuenta tipo="AHORRO">
+		  <nombre>Antonio García</nombre>
+		  <numero>123456</numero>
+		  <saldohaber>21000</saldohaber>
+		  <saldodebe>200</saldodebe>
+	    </cuenta>
+	    <cuenta tipo="AHORRO">
+		  <nombre>Pedro Gómez</nombre>
+		  <numero>1111456</numero>
+		  <saldohaber>12000</saldohaber>
+		  <saldodebe>0</saldodebe>
+	   </cuenta>				
+   </sucursal>
+   <sucursal telefono="2023345" codigo="SUC2">
+          <director>Fernando Rato</director>
+	    <poblacion>Talavera</poblacion>
+	    <cuenta tipo="AHORRO">
+		  <nombre>Marcelo Saez</nombre>
+		  <numero>30303036</numero>
+		  <saldohaber>15000</saldohaber>
+		  <saldodebe>12000</saldodebe>
+	    </cuenta>
+	    <cuenta tipo="AHORRO">
+		  <nombre>María Jesús Ramos</nombre>
+		  <numero>4444222</numero>
+		  <saldohaber>5000</saldohaber>
+		  <saldodebe>0</saldodebe>
+	    </cuenta>
+   </sucursal>	
+</sucursales >
+Podemos representarlo en JSON así:
+{
+   "sucursales": { 
+	"sucursal": [{
+		"telefono": 112233,"codigo": "SUC1",
+		"director": "Alicia Gómez","poblacion":"Madrid",
+		"cuenta": [{
+			"tipo": "AHORRO","nombre":"Antonio García",
+			"numero": 123456,"saldohaber": 21000,
+			"saldodebe": 200
+		   }, {
+			"tipo": "AHORRO","nombre": "Pedro Gómez",
+			"numero": 1111456,"saldohaber": 12000,
+			"saldodebe": 0
+		   }]
+		}, {
+		"telefono": 2023345,"codigo": "SUC2",
+		"director":"Fernando Rato","poblacion":"Talavera",
+		"cuenta": [{
+			"tipo": "AHORRO",
+			"nombre":"Marcelo Saez","numero":30303036,
+			"saldohaber":150000,	"saldodebe": 12000
+		   }, {
+			"tipo": "AHORRO","nombre":"María Jesús Ramos",
+			"numero": 4444222,"saldohaber": 5000,
+			"saldodebe": 0
+		  }]
+	  }]
+  } 
+}
+
+-------------------------------------------------------
+--Colección amigos
+
+use mibasedatos;
+db.amigos.drop();
+Amigo1={nombre:'Ana',teléfono:545656885,curso:'1DAM', nota:7};
+Amigo2={nombre:'Marleni',teléfono:3446500,curso:'1DAM',nota:8};
+db.amigos.save(Amigo1);
+db.amigos.save(Amigo2);
+db.amigos.insert({nombre:'Juanito', teléfono:55667788,curso:'2DAM', nota:6 });
+db.amigos.find();
+
+//-------------------------------------------------------
+//Colección libros:
+db.libros.drop();
+db.libros.insert({codigo:1,nombre:"Acceso a datos", pvp: 35, editorial:"Garceta", temas:["Base de datos", "Hibernate","Neodatis"]})
+db.libros.insert({codigo:2,nombre:"Entornos de desarrollo", pvp: 27, editorial:"Garceta", temas:["UML", "Subversión", "ERMaster"]})
+db.libros.insert({codigo:3,nombre:"Programación de Servicios", pvp: 25,  editorial:"Garceta", temas:["SOCKET", "Multihilo"]})
+db.libros.find();
+
+//-------------------------------------------------------
+//Colección artículos:
+db.articulos.drop();
+db.articulos.insert({código:1,denominación:"Portatil Acer", pvp: 500, categoría:"Informática", uv:10, stock: 20})
+db.articulos.insert({código:2,denominación:"Pala Pádel", pvp: 100, categoría:"Deportes", uv:5, stock: 30})
+db.articulos.insert({código:3,denominación:"Caja Lápices", pvp: 6, categoría:"Escritorio", uv:10, stock: 6})
+db.articulos.insert({código:4,denominación:"Marcadores", pvp: 10, categoría:"Escritorio", uv:20, stock: 19})
+db.articulos.insert({código:5,denominación:"Memoria 32GB", pvp: 120, categoría:"Informática", uv:8, stock: 10})
+db.articulos.insert({código:6,denominación:"Micro Intel", pvp: 150, categoría:"Informática", uv:4, stock: 10})
+db.articulos.insert({código:7,denominación:"Bolas Pádel", pvp: 5, categoría:"Deportes", uv:15, stock: 30})
+db.articulos.insert({código:8,denominación:"Falda Pádel", pvp: 15, categoría:"Deportes", uv:10, stock: 10})
+db.articulos.find()
+
+
+//-------------------------------------------------------
+//Creo colecciones emple y depart, cada elemento con su _id manual.
+//Colección emple, con 4 empleados.
+db.emple.drop();
+db.emple.insert({_id:'emp1',nombre:"Juan", salario:1000, fechaalta:"10/10/1999"})
+db.emple.insert({_id:'emp2',nombre:"Alicia", salario:1400, fechaalta:"07/08/2000", oficio: "Profesora"})
+db.emple.insert({_id:'emp3',nombre:"María Jesús", salario:1500, fechaalta: "05/01/2005", oficio: "Analista", comisión:100})
+db.emple.insert({_id:'emp4',nombre:"Alberto", salario:1100, fechaalta:"15/11/2001"})
+db.emple.find();
+
+//Colección depart con dos departamentos, asignamos los dos primeros //empleados al primer departamento, y al segundo el resto de emple
+db.depart.drop();
+db.depart.insert({_id:'dep1',nombre:"Informática",loc:'Madrid', emple:['emp1', 'emp2']})
+db.depart.insert({_id:'dep2',nombre:"Gestión",loc:'Talavera', emple:['emp3', 'emp4' ]})
+db.depart.find()
+
+-------------------------------------------------------
+--Colección Trabajadores
+db.trabajadores.drop();
+db.trabajadores.insert({nombre: {nomb:"Alicia",ape1:"Ramos", ape2:"Martín"},
+                        direccion: {población: "Madrid", calle : "Avda Toledo 10"},
+						salario: 1200,
+						oficios:["Profesora", "Analista"],
+						primas: [20,30,40],
+						edad:50
+						})
+						
+db.trabajadores.insert({nombre: {nomb:"Juan",ape1:"Gil", ape2:"Sánchez"},
+                        direccion: {población: "Madrid", calle : "Mayor 12"},
+						salario: 1400,
+						oficios:["Programador", "Analista"],
+						primas: [120,130,40],
+						edad: 30
+						})
+
+db.trabajadores.insert({nombre: {nomb:"Raquel",ape1:"García", ape2:"del Amo"},
+                        direccion: {población: "Toledo", calle : "Ocaña 22"},
+						salario: 1500,
+						oficios:["Profesor"],
+						primas: [60, 30, 80],
+						edad: 45
+						})
+db.trabajadores.insert({nombre: {nomb:"Fernando",ape1:"Romo", ape2:"Pérez"},
+                        direccion: {población: "Talavera", calle : "Las cañas 2"},
+						salario: 1300,
+						oficios:["Profesor", "Representante"],
+						edad: 43
+						})
+db.trabajadores.insert({nombre: {nomb:"María",ape1:"Suárez", ape2:"Verdes"},
+                        direccion: {población: "Toledo", calle : "Av Madrid 32"},
+						salario: 1600,
+						oficios:["Profesor", "Contable"],
+						primas: [30, 70, 80],
+						edad: 55
+						})	
+
+db.trabajadores.insert({nombre: {nomb:"Santiago",ape1:"Gómez", ape2:"Corregidor"},
+                        direccion: {población: "Toledo", calle : "Av Madrid 32"},
+						salario: 1600,
+						edad: 55
+						})						

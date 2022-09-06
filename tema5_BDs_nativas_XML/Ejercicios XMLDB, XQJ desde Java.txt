@@ -1,0 +1,187 @@
+EJercicios XMLDB, XQJ desde Java
+XMLDB
+1.Realiza una conexión con la BD para acceder al documento empleados.xml y obtener los empleados del departamento 10. (verempleados10())
+
+2.Implementar vercolecciones() y verrecursosdelascolecciones()
+
+
+3.Crear – crearcoleccysubirarchivo(ruta) o borrar – borrarcoleccion(col)
+borrarfichero (ruta,col) una colección puede ser:
+//Crear una nueva colección
+CollectionManagementService mgtService = (CollectionManagementService)
+coleccion.getService("CollectionManagementService", "1.0");
+mgtService.createCollection("nuevaColeccion");
+//Borrar una colección
+CollectionManagementService mgtService = (CollectionManagementService)
+coleccion.getService("CollectionManagementService", "1.0");
+mgtService.removeCollection("nuevaColeccion");
+
+4.añade un documento nuevo a la colección, el documento es NuevosDepartamentos.xml, y se
+encuentra en la carpeta del proyecto Java. Se utiliza el paquete java.io.File, para declarar el fichero
+a subir a la BD, y el método createResource() para crear el recurso.
+5.crearcoleccysubirarchivo(String colecc)
+6.borra el documento anterior de la colección, comprobando si existe. Se utiliza el método
+removeResource().
+7.Actualizar el stock
+• actualizaproductos() //Añadir 10 al stock
+8.Buscar, extraer y guardar un documento
+• bajardocumento() // Localizar un documento, extraerlo y guardarlo en disco
+
+9.ejecutarconsultafichero(String fichero) //miconsulta.xq(: Productos con precio > 50 y zona 10
+)
+
+• Realizar aplicación que implemente el siguiente menú:
+System.out.println("............................................................\n"
++ ". 1 Listar todos los departamentos. \n"
++ ". 2 Insertar un departamento (inserta 21, 'El 21’,Vigo'. \n"
++ ". 3 Consultar un departamento.\n"
++ ". 4 Modificar un departamento (cambia el nombre por ‘NOMBRE NUEVO').\n"
++ ". 5 Borrar un departamento.\n"
++ ". 0 SALIR.\n"
++ "............................................................\n");
+
+XQJ
+1.verproductos();//Ver to2 productos
+2.cuentaproduc();//"Numero de productos con precio > de 50: "
+3.numporzona();//"Numero de productos por cada zona "
+4.ejecutarconsultadefichero();//miconsulta.xq(: Productos con precio > 50 y zona 10 )
+(: Productos con precio > 50 y zona 10 :)
+for $prod in collection("/db/ColeccionesXML/BDProductosXML")/productos/produc
+where $prod/precio>50 and $prod/cod_zona=10
+return $prod
+5.creaemple10();//NUEVO_EMPLE10.xml
+6.muestraDatosProductosXML()//Mostrar los datos del documento productos.xml, si tenemos productos en
+distintos documentos se mostrarán las etiquetas de todos los documentos
+
+
+
+***************************************************************************************************************************************************************************
+***************************************************************************************************************************************************************************
+
+
+
+EJercicios XMLDB, XQJ desde Java
+XMLDB
+1.Realiza una conexión con la BD para:
+acceder al documento empleados.xml
+y obtener los empleados del departamento 10. (Ej. nombre método - verempleados10())
+
+2.Implementar 
+
+vercolecciones() y //Collection col = DatabaseManager.getCollection(URI, usu, usuPwd);
+verrecursosdelascolecciones()//Collection colecc = col.getChildCollection(colecciones[j]);
+
+3.Crear – crearcoleccysubirarchivo(ruta)
+  borrar – borrarcoleccion(col), borrarfichero(ruta,col)
+
+Trabajo con una colección puede ser:
+//Crear una nueva colección
+CollectionManagementService mgtService = (CollectionManagementService)
+coleccion.getService("CollectionManagementService", "1.0");
+mgtService.createCollection("nuevaColeccion");
+//Borrar una colección
+CollectionManagementService mgtService = (CollectionManagementService)
+coleccion.getService("CollectionManagementService", "1.0");
+mgtService.removeCollection("nuevaColeccion");
+
+4.añade un documento nuevo a la colección: 
+
+el documento es NuevosDepartamentos.xml (se encuentra en la carpeta del proyecto Java). Se utiliza el paquete java.io.File, para declarar el fichero
+a subir a la BD, y el método createResource() para crear el recurso.
+5.crearcoleccysubirarchivo(String colecc) //variante del apartado 3.->Resource nuevoRecurso = col.createResource(archivo.getName(), "XMLResource");
+6.borra el documento anterior de la colección, comprobando si existe. Se utiliza el método removeResource().
+
+
+7.Actualizar el stock
+• actualizaproductos() //Añadir 10 al stock->return update value
+
+
+8.Buscar, extraer y guardar un documento
+• bajardocumento() // Localizar un documento, extraerlo y guardarlo en disco
+
+/**
+
+System.out.println("ID del documento: " + res.getDocumentId());
+                // Volcado del documento a un arbol DOM
+                Node document = (Node) res.getContentAsDOM();
+                Source source = new DOMSource(document);
+                // Volcado del documento de memoria a consola
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                Result console = new StreamResult(System.out);
+                transformer.transform(source, console);
+                // Volcado del documento a un fichero
+                Result fichero = new StreamResult(new java.io.File("./zonas.xml"));
+                transformer = TransformerFactory.newInstance().newTransformer();
+                transformer.transform(source, fichero);
+
+**/
+
+9.ejecutarconsultafichero(String fichero) //miconsulta.xq(: Productos con precio > 50 y zona 10:)
+
+/*
+
+BufferedReader entrada = new BufferedReader(new FileReader(fichero));
+            String linea = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            String salto = System.getProperty("line.separator"); // es el salto
+                                                                    // de linea
+                                                                    // \n
+
+            while ((linea = entrada.readLine()) != null) {
+                stringBuilder.append(linea);
+                stringBuilder.append(salto);
+            }
+            String consulta = stringBuilder.toString();
+
+*/
+
+10. Realizar aplicación que implemente el siguiente menú:
+System.out.println("............................................................\n"
++ ". 1 Listar todos los departamentos. \n"
++ ". 2 Insertar un departamento (inserta 21, 'El 21’,Vigo'. \n"
+
+/*
+
+String nuevodep = "<DEP_ROW><DEPT_NO>" + dep + "</DEPT_NO>"
+                + "<DNOMBRE>" + dnombre + "</DNOMBRE><LOC>" + loc + "</LOC>"
+                + "</DEP_ROW>";
+
+*/
+
++ ". 3 Consultar un departamento.\n"//un número de departamento determinado
++ ". 4 Modificar un departamento (cambia el nombre por ‘NOMBRE NUEVO').\n"//update value
++ ". 5 Borrar un departamento.\n" //update delete
++ ". 0 SALIR.\n"
++ "............................................................\n");
+
+XQJ
+1.verproductos();//Ver to2 productos
+
+2.cuentaproduc();//"Numero de productos con precio > de 50: "
+
+3.numporzona();//"Numero de productos por cada zona "
+
+4.ejecutarconsultadefichero();//miconsulta.xq(: Productos con precio > 50 y zona 10 :)
+for $prod in collection("/db/ColeccionesXML/BDProductosXML")/productos/produc
+where $prod/precio>50 and $prod/cod_zona=10
+return $prod
+
+5.creaemple10();//NUEVO_EMPLE10.xml -> consultar emplado del depto 10
+
+/*
+
+                BufferedWriter bw = new BufferedWriter(new FileWriter(nom_archivo));
+                bw.write("<?xml version='1.0' encoding='ISO-8859-1'?>" + "\n");
+                result.next();
+                //String cad = result.toString();
+                                String cad = result.getItem().getItemAsString(null);
+                                //System.out.println(result.getItem().getItemAsString(null));
+                System.out.println(" output " + cad); // visualizamos
+                bw.write(cad + "\n"); // grabamos en el fichero
+                bw.close(); // Cerramos el fichero el fichero
+
+*/
+
+
+
+6.muestraDatosProductosXML()//Mostrar los datos del documento productos.xml, si tenemos productos en distintos documentos se mostrarán las etiquetas de todos los documentos

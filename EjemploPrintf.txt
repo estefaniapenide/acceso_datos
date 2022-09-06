@@ -1,0 +1,18 @@
+//Ejemplo con printf
+
+if(objects.hasNext()){
+             System.out.println("-----LISTA DE AUTORES DE NACIONALIDAD ...---");
+             System.out.printf("%-20s %-50s %n","DNI","NOMBRE");
+             System.out.printf("%-20s %-50s %n","--------","---------------------");
+            while(objects.hasNext()){
+                autor=(C_Autor)objects.next();
+                autor.vis2();
+            }
+        }else{
+            System.out.println("No se encontraron jugadores de esa nacionalidad.");
+        }
+		
+public void vis2(){
+       System.out.printf("%-20s %-50s %n",this.dni,this.nombre);
+        
+}

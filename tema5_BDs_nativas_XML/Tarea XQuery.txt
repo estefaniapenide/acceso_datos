@@ -1,0 +1,74 @@
+Tarea XQuery
+XQUERY usando los ficheros (libros.xml y librosalmacen.xml)
+    1. Listar el título de todos los libros.
+       for $lib in /bib//titulo
+       return <LIBRO>{$lib/text()}</LIBRO>
+
+    2. Listar año y título de todos los libros, ordenados por el año.
+       for $lib in /bib/libro
+       let $t := $lib/titulo/text(), $year :=$lib/data(@año)
+      order by $year
+      return <LIBRO>{$t,', ',$year}</LIBRO>
+
+    3. Listar los libros cuyo precio sea 65.95
+       for $lib in /bib/libro[precio=65.95]
+       return <LIBRO>{$lib/node()}</LIBRO>
+
+    4. Listar los libros publicados antes del año 2000
+       for $lib in /bib/libro[@año<2000]
+       return <LIBRO>{$lib/node()}</LIBRO>
+
+    5. Listar año y título de los libros publicados por Addison-Wesley después del año 1992.
+       for $lib in /bib/libro[@año>1992 and editorial="Addison-Wesley"]
+       let $t := $lib/titulo, $year :=$lib/data(@año)
+       return <LIBRO>{$t,<YEAR>{$year}</YEAR>}</LIBRO>
+
+    6. Listar año y título de los libros que tienen más de un autor.
+       for $lib in /bib/libro[count(autor)>1]
+       let $t := $lib/titulo, $year :=$lib/data(@año)
+       return <LIBRO>{$t,<YEAR>{$year}</YEAR>}</LIBRO>
+
+    7. Listar año y título de los libros que tienen no tienen autor.
+       for $lib in /bib/libro[count(autor)<1]
+       let $t := $lib/titulo, $year :=$lib/data(@año)
+       return <LIBRO>{$t,<YEAR>{$year}</YEAR>}</LIBRO>
+
+    8. Mostrar los apellidos de los autores que aparecen en el documento, sin repeticiones, ordenados alfabéticamente.
+       for $autores in distinct-values(/bib/libro/autor/apellido)
+       order by $autores
+       return <AUT_APELLIDO>{$autores}</AUT_APELLIDO>
+
+    9. Por cada libro, listar agrupado en un elemento <result> su titulo y autores
+       for $lib in /bib/libro
+       let $t := $lib/titulo, $aut := $lib/autor
+       return <result>{$t,$aut}</result>
+
+    10. Por cada libro, obtener su título y el número de autores, agrupados en un elemento <libro>
+       for $lib in /bib/libro
+       let $t := $lib/titulo, $aut := count($lib/autor)
+       return <libro>{$t,<autores>{$aut}</autores>}</libro>
+
+    11. Una lista ordenada alfabéticamente de categorías de libros comprados.
+       //A falta de categoría lo ordeno por los títulos de los libros
+       //He supuesto que la posición de los libros en la lista se corresponde 
+       //con los códigos de que hay en ‘almacen’.
+       for $codComp in /almacen/comprados/codigo/number()
+       for $lib in /bib/libro[position()=$codComp]
+       order by $lib/titulo
+       return $lib
+
+    12. Obtener la suma del importe de todos los libros que están pendientes.
+       //He supuesto que la posición de los libros en la lista se corresponde 
+       //con los códigos de que hay en ‘almacen’.
+       let $codPen := /almacen/pendientes/codigo/number()
+       for $precio in sum(/bib/libro[position()=$codPen]/precio)
+       return <IMPORTE_PENDIENTES>{$precio}</IMPORTE_PENDIENTES>
+
+    13. Una lista ordenada de autores que tengan libros pendientes. La última línea contendrá una línea que tenga el total de autores.
+	//He supuesto que la posición de los libros en la lista se corresponde 
+       //con los códigos de que hay en ‘almacen’.
+       let $codPen := /almacen/pendientes/codigo/number()
+       for $total in count(distinct-values(/bib/libro[position()=$codPen]/autor))
+       let $autores := /bib/libro[position()=$codPen]/autor
+       return <AUTORES>{$autores}<TOTAL_AUTORES>{$total}</TOTAL_AUTORES></AUTORES>
+

@@ -1,0 +1,22 @@
+{"instituto": 
+	{"departamento":{
+			"telefono":"112233",
+			"tipo":"A",
+			"codigo":"IFC1",
+			"nombre":"Informática",
+			"empleado":[
+				   {
+				   "salario":2000,
+				   "puesto":"Asociado",
+				   "nombre":"Juan Parra"
+				   },
+			           {
+				   "salario":2000,
+				   "puesto":"Asociado",
+				   "nombre":"Alicia Martín"
+				   }
+				   ]
+
+			}
+ 	}
+}

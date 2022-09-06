@@ -1,0 +1,139 @@
+Tarea XPATH
+
+En la ruta /db/apps/
+Crear colección para los ejercicios (pej. collection)
+Y subir los documentos:
+    • universidad.xml ,
+    • libros.xml
+    • y librosalmacen.xml.
+      
+    1. Nombre de la Universidad
+       /universidad/nombre
+       /universidad/nombre/text()
+
+    2. País de la Universidad
+       /universidad/pais
+       /universidad/pais/text()
+
+    3. Nombres de las Carreras
+       /universidad/carreras//nombre
+       /universidad/carreras//nombre/text()
+       //carreras//nombre
+	//carreras//nombre/text()
+
+    4. Años de plan de estudio de las carreras
+       /universidad/carreras//plan
+       /universidad/carreras//plan/text()
+       //carreras//plan
+       //carreras//plan/text()
+       /universidad/carreras/carrera/concat(nombre,' - PLAN: ',plan)
+       //carreras/carrera/concat(nombre,'- PLAN: ',plan)
+    
+    5. Nombres de todos los alumnos.
+       /universidad/alumnos/alumno/concat(nombre,' ',apellido1,' ',apellido2)
+	//alumnos/alumno/concat(nombre,'',apellido1,'',apellido2)
+
+    6. Identificadores de todas las carreras.
+       //carreras//@id/data()
+
+    7. Datos de la carrera cuyo id es c01.
+       //carreras/carrera[@id="c01"]
+
+    8. Centro en que se estudia de la carrera cuyo id es c02.
+      //carreras/carrera[@id="c02"]/centro
+
+    9. Nombre de las carreras que tengan subdirector.
+       //carreras/carrera[subdirector]/nombre
+
+    10. Nombre de los alumnos que estén haciendo proyecto.
+       //alumnos//estudios[proyecto]/../nombre
+
+    11. Códigos de las carreras en las que hay algún alumno matriculado
+       //alumnos//estudios/carrera/@codigo/data()
+
+    12. Apellidos y Nombre de los alumnos con beca.
+       //alumnos/alumno[@beca="si"]/concat(nombre,'',apellido1,'',apellido2)
+
+    13. Nombre de las asignaturas de la titulación c04.
+       //asignaturas/asignatura[@titulacion="c04"]/nombre
+
+    14. Nombre de las asignaturas de segundo trimestre.
+       //asignaturas/asignatura[trimestre=2]/nombre
+
+    15. Nombre de las asignaturas que no tienen 4 créditos teóricos.
+       //asignaturas/asignatura[not(creditos_teoricos=4)]/nombre
+
+    16. Código de la carrera que estudia el último alumno.
+       //alumnos/alumno[last()]//carrera/@codigo/data()
+
+    17. Código de las asignaturas que estudian mujeres.
+       distinct-values(data(//alumnos/alumno[sexo="Mujer"]/estudios/asignaturas/asignatura/@codigo))
+
+    18. Nombre de los alumnos que matriculados en la asignatura a02.
+       //alumnos/alumno/estudios/asignaturas/asignatura[@codigo="a02"]/../../../nombre
+
+    19. Códigos de las carreras que estudian los alumnos matriculados en alguna asignatura.
+       //alumnos//estudios[asignaturas]/../nombre
+
+    20. Apellidos de todos los hombres.
+       //alumnos/alumno[sexo="Hombre"]/concat(apellido1,' ',apellido2)
+       //alumnos/alumno[sexo="Hombre"]/apellido1|//alumnos/alumno[sexo="Hombre"]/apellido2
+
+//A partir de aquí uso XQUERY y las consultas en XPATH las he comprobado en el siguiente enlace: https://www.freeformatter.com/xpath-tester.html#ad-output
+
+    21. Nombre de la carrera que estudia Víctor Manuel.
+XQUERY:
+       for $id in data(//alumnos/alumno[nombre="Víctor Manuel"]/estudios/carrera/@codigo)
+       let$carrera:=//carreras/carrera[@id=$id]/nombre
+       return$carrera
+XPath:
+       //carreras/carrera[@id=data(//alumnos/alumno[nombre="Víctor Manuel"]/estudios/carrera/@codigo)]/nombre 
+
+    22. Nombre de las asignaturas que estudia Luisa.
+XQUERY:
+       for $id in data(//alumnos/alumno[nombre="Luisa"]/estudios/asignaturas/asignatura/@codigo)
+       let $asignaturas := //asignaturas/asignatura[@id=$id]/nombre
+       return $asignaturas
+XPath:
+       //asignaturas/asignatura[@id=data(//alumnos/alumno[nombre="Luisa"]/estudios/asignaturas/asignatura/@codigo)]/nombre
+
+    23. Primer apellido de los alumnos matriculados en Ingeniería del Software
+XQUERY:
+       for $codigo in data(//asignaturas/asignatura[nombre="Ingeniería del Software"]/@id)
+       let $alumnos := //alumnos/alumno/estudios/asignaturas/asignatura[@codigo=$codigo]/../../../apellido1
+       return  $alumnos
+XPath:
+      //alumnos/alumno/estudios/asignaturas/asignatura[@codigo=data(//asignaturas/asignatura[nombre="Ingeniería del Software"]/@id)]/../../../apellido1 
+    
+    24. Nombre de las carreras que estudian los alumnos matriculados en la asignatura Tecnología de los Alimentos.
+XQUERY:
+        for $codAsignatura in data(//asignaturas/asignatura[nombre="Tecnología de los Alimentos"]/@id)
+        let $codCarreras := data(//alumnos/alumno/estudios/asignaturas/asignatura[@codigo=$codAsignatura]/../../carrera/@codigo), $carreras := //carreras/carrera[@id=$codCarreras]/nombre
+        return  <CARRERAS>{$carreras}</CARRERAS>
+XPath:
+       //carreras/carrera[@id=data(//alumnos/alumno/estudios/asignaturas/asignatura[@codigo=data(//asignaturas/asignatura[nombre="Tecnología de los Alimentos"]/@id)]/../../carrera/@codigo)]/nombre 
+
+    25. Nombre de los alumnos matriculados en carreras que no tienen subdirector.
+XQUERY:
+       let $codCarrera := data(//carreras/carrera[not (subdirector)]/@id)
+       let $alumnos := //alumnos/alumno/estudios/carrera[@codigo=$codCarrera]/../../nombre
+       return $alumnos
+XPath:
+       //alumnos/alumno/estudios/carrera[@codigo=data(//carreras/carrera[not (subdirector)]/@id)]/../../nombre
+        
+    26. Nombre de los alumnos matriculados en asignaturas con 0 créditos prácticos y que estudien la carrera de I.T. Informática.
+XQUERY:
+      let $codCarrera := data(//carreras/carrera[nombre="I.T. Informática"]/@id)
+      let $asignaturas0creditos := data(//asignatura[creditos_practicos = 0]/@id)
+      let $alumnos := //alumnos/alumno/estudios[carrera[@codigo =$codCarrera]][asignaturas/asignatura[@codigo=$asignaturas0creditos]]/../nombre
+      return $alumnos
+XPath:
+      //alumnos/alumno/estudios[carrera[@codigo =data(//carreras/carrera[nombre="I.T. Informática"]/@id)]][asignaturas/asignatura[@codigo=data(//asignatura[creditos_practicos = 0]/@id)]]/../nombre
+ 
+    27. Nombre de los alumnos que estudian carreras cuyos planes son anteriores a 2002.
+XQUERY:
+       let $codCarrera := data(//carreras/carrera[plan<2002]/@id)
+       let $alumnos := //alumnos/alumno/estudios/carrera[@codigo =$codCarrera]/../../nombre
+       return $alumnos
+XPath:
+      //alumnos/alumno/estudios/carrera[@codigo =data(//carreras/carrera[plan<2002]/@id)]/../../nombre

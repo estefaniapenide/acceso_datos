@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<NUEVO_EMPLE10>
+<EMP_ROW>
+    <EMP_NO xmlns="">7782</EMP_NO>
+	<APELLIDO xmlns="">CEREZO</APELLIDO>
+	<OFICIO xmlns="">DIRECTOR</OFICIO>
+	<DIR xmlns="">7839</DIR>
+	<FECHA_ALT xmlns="">1991-06-09</FECHA_ALT>
+	<SALARIO xmlns="">2885</SALARIO>
+	<DEPT_NO xmlns="">10</DEPT_NO>
+  </EMP_ROW>
+<EMP_ROW>
+    <EMP_NO xmlns="">7839</EMP_NO>
+	<APELLIDO xmlns="">REY</APELLIDO>
+	<OFICIO xmlns="">PRESIDENTE</OFICIO>
+	<FECHA_ALT xmlns="">1991-11-17</FECHA_ALT>
+	<SALARIO xmlns="">4100</SALARIO>
+	<DEPT_NO xmlns="">10</DEPT_NO>
+  </EMP_ROW>
+<EMP_ROW>
+    <EMP_NO xmlns="">7934</EMP_NO>
+	<APELLIDO xmlns="">MUÑOZ</APELLIDO>
+	<OFICIO xmlns="">EMPLEADO</OFICIO>
+	<DIR xmlns="">7782</DIR>
+	<FECHA_ALT xmlns="">1992-01-23</FECHA_ALT>
+	<SALARIO xmlns="">1690</SALARIO>
+	<DEPT_NO xmlns="">10</DEPT_NO>
+ </EMP_ROW>
+</NUEVO_EMPLE10>

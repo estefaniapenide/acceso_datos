@@ -1,0 +1,10 @@
+Cliente\Conexion.class
+Operaciones\CrearBDInfoPredeterminada.class
+Cadenas\Cadenas.class
+Operaciones\Gestiones.class
+controldata\ControlData.class
+Servidor\ServidorLibreria.class
+Cliente\ClienteLibreria.class
+POO\Autor.class
+Operaciones\Crud.class
+POO\Libro.class

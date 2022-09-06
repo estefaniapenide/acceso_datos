@@ -1,0 +1,3 @@
+Calendar fechaC = Calendar.getInstance();
+//Convierto Calendar al tipo sql.Date
+java.sql.DATE sqlDate = new java.sql.Date(fechaC.getTimeInMillis());

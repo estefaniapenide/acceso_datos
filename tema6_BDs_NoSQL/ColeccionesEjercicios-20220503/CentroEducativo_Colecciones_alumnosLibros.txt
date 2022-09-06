@@ -1,0 +1,35 @@
+use centroeducativo;
+Alumno1 = {nombre:'Ana',telefono:658121212,curso:'2º DAM', nota:7}
+Alumno2 = {nombre:'Juan',telefono:687454545,curso:'2º DAM', nota:9}
+db.alumnos.save(Alumno1);
+db.alumnos.save(Alumno2);
+db.alumnos.insert({nombre:'Marta',telefono:647989898,curso:'2º DAM', nota:10});
+db.alumnos.insert({nombre:'Isabel', telefono:654858585, curso:'1º DAM', nota: 8});
+db.alumnos.insert({nombre:'Lucía', telefono:619858585, curso:'1º DAM', nota: 'ocho'});
+db.alumnos.insert({nombre:'Patricia', telefono:623585858, curso:'1º DAM', nota: 'nueve'});
+
+
+db.libros.insert({
+	codigo: 1, 
+	titulo: 'Código Limpio', 
+	precio: 35, 
+	editorial: 'Anaya', 
+	autor: 'Robert C. Martín', 
+	temas: ['Nombres con sentido', 'Funciones', 'Comentarios','Formato']
+})
+
+db.libros.insert({
+	codigo: 2, 
+	titulo: 'Patrones de Diseño en Java', 
+	precio: 32, editorial: 'Eni', 
+	autor: 'Laurent Debrauwer', 
+	temas: ['Patrones de construcción', 'Patrones de construcción', 'Patrones de comportamiento']
+})
+
+db.libros.insert({
+	codigo: 3, 
+	titulo: 'Java y Eclipse', 
+	precio: 40, 
+	editorial: 'Eni', 
+	autor: 'Fréderic Delechamp', temas: ['Diseño', 'Conexion', 'MVC']
+})

@@ -1,0 +1,100 @@
+Ejercicios Colecciones
+Colección empleados
+use mibasedatos;
+
+Empleado1={Emp_no:1, nombre:"Juan", dep:10, salario:1000, fechaalta:"10/10/1999"}
+
+Empleado2={Emp_no:2, nombre:"Alicia", dep:10, salario:1400, fechaalta:"07/08/2000", oficio: "Profesora"}
+
+Empleado3={Emp_no:3, nombre:"María Jesús", dep:20, salario:1500, fechaalta:"05/01/2005", oficio:"Analista", comisión:100}
+
+Empleado4={Emp_no:4, nombre:"Alberto", dep:20, salario:1100, fechaalta:"15/11/2001"}
+
+Empleado5={Emp_no:5, nombre:"Fernando", dep:30, salario:1400, fechaalta:"20/11/1999", oficio:"Analista", comisión:200}
+
+db.empleados.insert(Empleado1);
+
+db.empleados.insert(Empleado2);
+
+db.empleados.insert(Empleado3);
+
+db.empleados.insert(Empleado4);
+
+db.empleados.insert(Empleado5);
+
+
+Realiza las siguientes consultas:
+-Visualiza los empleados del departamento 10
+db.empleados.find({dep:10});
+
+-Visualiza los empleados del departamento 10 y 20
+db.empleados.find({dep:{$in:[10,20]}});
+
+-Obtén los empleados con salario >1300 y oficio Profesora
+db.empleados.find({salario:{$gt:1300},oficio:'Profesora'});
+
+-Sube el salario a los analistas en 100€ a todos los analistas
+db.empleados.update({oficio:'Analista'},{$inc:{salario:100}},{multi:true})
+
+******************************************************************************************************************************************************************
+Colección libros
+use mibasedatos;
+
+db.libros.insert({codigo:1, nombre:"Acceso a datos", pvp:35, editorial:"Garceta", temas:["Base de datos", "Hibernate", "Neodatis"]});
+
+db.libros.insert({codigo:2, nombre:"Entornos de desarrollo", pvp:27, editorial:"Garceta", temas:["UML", "Subversion", "ERMaster"]});
+
+db.libros.insert({codigo:3, nombre:"Programacion de servicios", pvp: 25, editorial:"Garceta", temas:["SOCKET", "Multihilo"]});
+
+
+
+Utilizando la colección libros realiza las siguientes consultas:
+-Visualiza los libros de la editorial Garceta, con pvp entre 20 y 25 incluidos y que tengan el tema SOCKET
+db.libros.find({editorial:'Garceta',pvp:{$in:[20,21,22,23,24,25]},temas:'SOCKET'})
+
+-Agrega el tema SOCKET a los libros que no lo tengan
+db.libros.update({temas:{$ne:'SOCKET'}},{$push:{temas:'SOCKET'}},{multi:true})
+
+-Baja a 5 el precio de los libros de la editorial Garceta
+db.libros.update({editorial:'Garceta'},{$set:{pvp:5}},{multi:true})
+
+********************************************************************************************************************************************************
+
+Utilizando la colección trabajadores realiza las siguientes consultas:
+-Visualiza la edad media, la media de salario y el número de trabajadores que hayan tenido una prima de 30 o de 80
+db.trabajadores.aggregate([{$match:{primas:{$in:[30,80]}}},{$group:{_id:'Trabajadores',mediaEdad:{$avg:'$edad'},mediaSalario:{$avg:'$salario'},numTrabajadores:{$sum:1}}}]) 
+
+-Visualiza por población el número de trabajadores, el salario medio y el máximo salario
+db.trabajadores.aggregate([{$group:{_id:'$direccion.población',numTrabajadores:{$count:{}},mediaSalario:{$avg:'$salario'},maxSalario:{$max:'$salario'}}}])
+
+-Visualizar el nombre, ape1 y ape2 del empleado que tiene máximo salario
+db.trabajadores.aggregate({$sort:{salario:-1}},{$group:{_id:'Trabajador',nombre:{$first:'$nombre.nomb'},apellido1:{$first:'$nombre.ape1'},apellido2:{$first:'$nombre.ape2'}}})
+
+- A partir de la consulta anterior, obtén ahora el nombre, ape1, ape2 y salario del empleado que tiene máximo salario por cada población
+db.trabajadores.aggregate({$sort:{salario:-1}},{$group:{_id:'$direccion.población',nombre:{$first:'$nombre.nomb'},apellido1:{$first:'$nombre.ape1'},apellido2:{$first:'$nombre.ape2'}, salario:{$first:'$salario'}}})
+
+********************************************************************************************************************************************************
+
+Utilizando la transformación del documento sucursales.xml a JSON realizada en los apartados anteriores, se pide crear
+las colecciones cuentas y sucursales. Para crearlas primero crea la colección cuentas y luego crea la colección sucursales
+
+
+************************************************************************************
+EJERCICIOS ETAPAS -AV
+
+• Obtener los títulos de los libros en mayúsculas
+db.libros.aggregate([{$project:{nombre:{$toUpper:'$nombre'}}}])
+
+• Obtener los títulos de los libros y la editorial en mayúsculas.
+db.libros.aggregate([{$project:{nombre:{$toUpper:'$nombre'},editorial:{$toUpper:'$editorial'}}}])
+
+• Almacenar la salida anterior en la base de datos. Para ello añadimos la etapa $out.
+
+• Obtener el título del libro, el precio, el Iva
+db.libros.aggregate([{$project:{titulo:'$nombre',precio:'$precio',iva:}}}])
+
+• Obtener el título del libro en mayúsculas, el precio, el Iva
+• Obtener el título del libro en mayúsculas, el precio, el Iva y el Total (Precio + Iva)
+• Obtener la denominación de los artículos en mayúsculas, para los artículos de la categoría Deportes.
+
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<zonas>
+<TITULO>DATOS DE LAS NUEVAS ZONAS</TITULO>
+<zona>
+  <cod_zona>51</cod_zona>
+  <nombre>Talavera-Comarca</nombre>
+  <director>Nuria Flores</director>
+</zona>
+<zona>
+<cod_zona>52</cod_zona>
+  <nombre>Plasencia</nombre>
+  <director>Germán Ramos</director>
+</zona>
+<zona>
+ <cod_zona>53</cod_zona>
+  <nombre>Talavera</nombre>
+  <director>Rosa Prado</director>
+</zona>
+
+</zonas>

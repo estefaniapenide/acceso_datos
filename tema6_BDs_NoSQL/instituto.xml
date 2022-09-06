@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<instituto>
+	<departamento telefono="112233" tipo="A">
+		<codigo>IFC1</codigo>
+		<nombre>Informática</nombre>
+		<empleado salario="2000">
+			<puesto>Asociado</puesto>
+			<nombre>Juan Parra</nombre>
+		</empleado>
+		<empleado salario="2300">
+			<puesto>Profesor</puesto>
+			<nombre>Alicia Martín</nombre>
+		</empleado>
+	</departamento>
+</instituto>

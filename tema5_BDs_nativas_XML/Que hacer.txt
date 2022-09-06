@@ -1,0 +1,16 @@
+1.-Crear conexion
+	servidor
+	datos conexion
+	datos usuario
+	
+
+2.-Uso de la conexión 
+	Una vez abierta conexión, construir la consulta: 
+		XPath
+		XQuery
+	Ejecutar la consulta:
+		XQJ --> Usar esta (de la que va a dejar un ejemplo y es más sencilla)
+		XMLDB
+
+
+
